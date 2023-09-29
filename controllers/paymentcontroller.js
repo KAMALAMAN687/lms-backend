@@ -2,7 +2,7 @@ import User from "../model/userSchema.js";
 import Payment from "../model/paymentSchema.js";
 import AppError from "../utils/error.util.js";
 import crypto from "crypto";
-import { razorpay } from "../server.js";
+import razorpay from "../server.js";
 const getRazorpayApiKey = async (req, res, next) => {
   try {
     res.status(200).json({
