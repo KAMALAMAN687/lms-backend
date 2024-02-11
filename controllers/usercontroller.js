@@ -91,7 +91,7 @@ const register = async (req, res, next) => {
       //sameSite: "none",
       //secure: true,
     };
-    res.cookie("token", token, cookieOption);
+    await res.cookie("token", token, cookieOption);
 
     res
       .status(200)
@@ -141,7 +141,7 @@ const login = async (req, res, next) => {
         //  secure: true,
       };
 
-      res.cookie("token", token, cookieOption);
+      await res.cookie("token", token, cookieOption);
       res.status(200).json({
         success: true,
         message: "user login successfully",
@@ -158,7 +158,7 @@ const login = async (req, res, next) => {
         //secure: true,
       };
 
-      res.cookie("token", token, cookieOption);
+      await res.cookie("token", token, cookieOption);
 
       res.status(200).json({
         success: true,
