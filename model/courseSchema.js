@@ -41,9 +41,13 @@ const courseSchema = new Schema(
             type: String,
             required: true,
           },
+          //select: false,
         },
         //select: false,
       },
+      //{
+      //  select: true,
+      //},
     ],
     numberOfLectures: {
       type: Number,

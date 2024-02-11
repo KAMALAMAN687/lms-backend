@@ -51,7 +51,7 @@ const register = async (req, res, next) => {
     });
 
     if (!user) {
-      return next(new AppError("User Registration FAiled,please try again"));
+      return next(new AppError("User Registration Failed,please try again"));
     }
 
     console.log("File Details =>", JSON.stringify(req.file));
@@ -88,8 +88,8 @@ const register = async (req, res, next) => {
     const cookieOption = {
       maxAge: 24 * 60 * 60 * 1000, //for one day
       httpOnly: true,
-      sameSite: "none",
-      secure: true,
+      //sameSite: "none",
+      //secure: true,
     };
     res.cookie("token", token, cookieOption);
 
@@ -137,8 +137,8 @@ const login = async (req, res, next) => {
       const cookieOption = {
         maxAge: 24 * 60 * 60 * 1000,
         httpOnly: true,
-        sameSite: "none",
-        secure: true,
+        //  sameSite: "none",
+        //  secure: true,
       };
 
       res.cookie("token", token, cookieOption);
@@ -154,8 +154,8 @@ const login = async (req, res, next) => {
       const cookieOption = {
         maxAge: 24 * 60 * 60 * 1000,
         httpOnly: true,
-        sameSite: "none",
-        secure: true,
+        //sameSite: "none",
+        //secure: true,
       };
 
       res.cookie("token", token, cookieOption);
