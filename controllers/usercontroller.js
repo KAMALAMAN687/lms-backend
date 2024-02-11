@@ -88,10 +88,10 @@ const register = async (req, res, next) => {
     const cookieOption = {
       maxAge: 24 * 60 * 60 * 1000, //for one day
       httpOnly: true,
-      //sameSite: "none",
-      //secure: true,
+      sameSite: "none",
+      secure: true,
     };
-    await res.cookie("token", token, cookieOption);
+    res.cookie("token", token, cookieOption);
 
     res
       .status(200)
@@ -137,11 +137,11 @@ const login = async (req, res, next) => {
       const cookieOption = {
         maxAge: 24 * 60 * 60 * 1000,
         httpOnly: true,
-        //  sameSite: "none",
-        //  secure: true,
+        sameSite: "none",
+        secure: true,
       };
 
-      await res.cookie("token", token, cookieOption);
+      res.cookie("token", token, cookieOption);
       res.status(200).json({
         success: true,
         message: "user login successfully",
@@ -154,11 +154,11 @@ const login = async (req, res, next) => {
       const cookieOption = {
         maxAge: 24 * 60 * 60 * 1000,
         httpOnly: true,
-        //sameSite: "none",
-        //secure: true,
+        sameSite: "none",
+        secure: true,
       };
 
-      await res.cookie("token", token, cookieOption);
+      res.cookie("token", token, cookieOption);
 
       res.status(200).json({
         success: true,
