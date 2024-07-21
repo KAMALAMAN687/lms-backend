@@ -88,7 +88,7 @@ const register = async (req, res, next) => {
     const cookieOption = {
       maxAge: 24 * 60 * 60 * 1000, //for one day
       httpOnly: true,
-      sameSite: "none",
+      sameSite: "strict",
       secure: true,
     };
     res.cookie("token", token, cookieOption);
