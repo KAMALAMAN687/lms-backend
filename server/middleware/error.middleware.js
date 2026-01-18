@@ -3,10 +3,10 @@ const errorMiddleware = (err, req, res, next) => {
   err.message = err.message || "Something Went Wrong";
 
   return res.status(err.statusCode).json({
-    success: false,
+    success: "false",
     message: err.message,
     stack: err.stack,
   });
 };
 
-module.exports = errorMiddleware;
+export default errorMiddleware;

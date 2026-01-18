@@ -1,3 +1,5 @@
+//generic functions for handling error in the whole backend
+
 class AppError extends Error {
   constructor(message, statusCode) {
     super(message);
@@ -7,4 +9,4 @@ class AppError extends Error {
     //this provide enrich error handling
   }
 }
-module.exports = AppError;
+export default AppError;

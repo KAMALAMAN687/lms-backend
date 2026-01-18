@@ -1,16 +1,22 @@
-require("dotenv").config();
-const cookieParser = require("cookie-parser");
-const cors = require("cors");
-const morgan = require("morgan");
-const errorMiddleware = require("./middleware/error.middleware");
+import { config } from "dotenv";
+config();
 
-const connectToDb = require("./config/db.js");
+import cors from "cors";
+import morgan from "morgan";
+import errorMiddleware from "./middleware/error.middleware.js";
+
+import connectToDb from "./config/db.js";
+import userRouter from "./routes/userRoutes.js";
+import courseRouter from "./routes/courseRoutes.js";
+import router from "./routes/miscellaneous.routes.js";
+import paymentRouter from "./routes/payment.routes.js";
 
 //make express app
-const express = require("express");
+import express from "express";
+import cookieParser from "cookie-parser";
 const app = express();
 
-connectToDb();
+await connectToDb();
 
 app.use(express.json());
 app.use(cookieParser());
@@ -24,15 +30,17 @@ app.use(
 );
 
 app.use(morgan("dev"));
-const userRouter = require("./routes/userRoutes.js");
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/courses", courseRouter);
+app.use("/api/v1", router);
+app.use("/api/v1/payments", paymentRouter);
 
 app.use("/ping", (req, res) => {
   res.send("/pong");
 });
 app.all("*", (req, res) => {
-  res.status(404).send("OOPS!! 404 page not found");
+  res.status(404).send("OOPS!! 404  page not found ,Try Again Later");
 });
 app.use(errorMiddleware);
 
-module.exports = app;
+export default app;

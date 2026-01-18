@@ -1,8 +1,8 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 mongoose.set("strictQuery", false);
 
-connectToDb = async () => {
+const connectToDb = async () => {
   try {
     await mongoose.connect(
       process.env.MONGO_URI || `mongodb://localhost:27017/lmsproject`
@@ -14,4 +14,4 @@ connectToDb = async () => {
   }
 };
 
-module.exports = connectToDb;
+export default connectToDb;

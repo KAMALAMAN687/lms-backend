@@ -1,16 +1,25 @@
-const express = require("express");
-const jwtAuth = require("../middleware/jwtAuth.js");
-const {
+import { Router } from "express";
+import {
   register,
   login,
   logout,
   getProfile,
-} = require("../controllers/usercontroller.js");
-const userRouter = express.Router();
+  forgotPassword,
+  resetPassword,
+  changePassword,
+  updateUser,
+} from "../controllers/usercontroller.js";
+import upload from "../middleware/multer.middleware.js";
+import isLoggedIn from "../middleware/auth.middleware.js";
+const userRouter = Router();
 
-userRouter.post("/register", register);
+userRouter.post("/register", upload.single("avatar"), register);
 userRouter.post("/login", login);
 userRouter.get("/logout", logout);
-userRouter.post("/me", jwtAuth, getProfile);
+userRouter.get("/me", isLoggedIn, getProfile);
+userRouter.post("/forgotpassword", forgotPassword);
+userRouter.post("/resetpassword/:resetToken", resetPassword);
+userRouter.post("/changepassword", isLoggedIn, changePassword);
+userRouter.put("/update", isLoggedIn, upload.single("avatar"), updateUser);
 
-module.exports = userRouter;
+export default userRouter;
